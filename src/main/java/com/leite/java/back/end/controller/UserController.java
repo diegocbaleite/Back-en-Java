@@ -59,10 +59,25 @@ public class UserController {
         userDTO3.setTelefone("1234-3454");
         userDTO3.setDataCadastro(LocalDateTime.now());
 
+        UserDTO userDTO4 = new UserDTO();
+        userDTO4.setNome("Carlos Henrique");
+        userDTO4.setCpf("987");
+        userDTO4.setEndereco("Avenida 2");
+        userDTO4.setEmail("carlos@email.com");
+        userDTO4.setTelefone("1234-3454");
+        userDTO4.setDataCadastro(LocalDateTime.now());
+
         usuarios.add(userDTO);
         usuarios.add(userDTO2);
         usuarios.add(userDTO3);
+        usuarios.add(userDTO4);
 
+    }
+
+    public UserDTO inserir(@RequestBody UserDTO userDTO) {
+        userDTO.setDataCadastro(LocalDateTime.now());
+        usuarios.add(userDTO);
+        return userDTO;
     }
 }
 
