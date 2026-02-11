@@ -37,14 +37,14 @@ public class Usuario {
         return usuario;
     }
 
-    public static UsuarioDTO convert(Usuario user) {
+    public static UsuarioDTO convert(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setNome(user.getNome());
-        usuarioDTO.setEndereco(user.getEndereco());
-        usuarioDTO.setCpf(user.getCpf());
-        usuarioDTO.setEmail(user.getEmail());
-        usuarioDTO.setTelefone(user.getTelefone());
-        usuarioDTO.setDataCadastro(user.getDataCadastro());
+        usuarioDTO.setNome(usuario.getNome());
+        usuarioDTO.setEndereco(usuario.getEndereco());
+        usuarioDTO.setCpf(usuario.getCpf());
+        usuarioDTO.setEmail(usuario.getEmail());
+        usuarioDTO.setTelefone(usuario.getTelefone());
+        usuarioDTO.setDataCadastro(usuario.getDataCadastro());
         return usuarioDTO;
     }
 }
