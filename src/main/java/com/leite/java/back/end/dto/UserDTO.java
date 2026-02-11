@@ -1,5 +1,6 @@
 package com.leite.java.back.end.dto;
 
+import com.leite.java.back.end.model.User;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,15 @@ public class UserDTO {
     private String email;
     private String telefone;
     private LocalDateTime dataCadastro;
+
+    public static UserDTO convert(User user) {
+        return new UserDTO(
+                user.getNome(),
+                user.getCpf(),
+                user.getEndereco(),
+                user.getEmail(),
+                user.getTelefone(),
+                user.getDataCadastro()
+        );
+    }
 }
