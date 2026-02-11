@@ -1,6 +1,6 @@
 package com.leite.java.back.end.dto;
 
-import com.leite.java.back.end.model.User;
+import com.leite.java.back.end.model.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class UsuarioDTO {
     @NotBlank(message = "Nome é	obrigatório")
     private String nome;
     @NotBlank(message = "CPF é obrigatório")
@@ -24,14 +24,14 @@ public class UserDTO {
     private String telefone;
     private LocalDateTime dataCadastro;
 
-    public static UserDTO convert(User user) {
-        return new UserDTO(
-                user.getNome(),
-                user.getCpf(),
-                user.getEndereco(),
-                user.getEmail(),
-                user.getTelefone(),
-                user.getDataCadastro()
+    public static UsuarioDTO convert(Usuario usuario) {
+        return new UsuarioDTO(
+                usuario.getNome(),
+                usuario.getCpf(),
+                usuario.getEndereco(),
+                usuario.getEmail(),
+                usuario.getTelefone(),
+                usuario.getDataCadastro()
         );
     }
 }

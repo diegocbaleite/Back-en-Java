@@ -1,5 +1,5 @@
-create schema if not exists users;
-create table users.user
+create schema if not exists usuarios;
+create table usuarios.usuario
 (
     id            BIGINT       NOT NULL AUTO_INCREMENT,
     nome          VARCHAR(100) NOT NULL,
