@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.spi.ToolProvider.findFirst;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -79,5 +81,18 @@ public class UserController {
         usuarios.add(userDTO);
         return userDTO;
     }
+
+    @DeleteMapping("/{cpf}")
+    public boolean remover(@PathVariable String cpf) {
+        boolean removido = usuarios.removeIf(userDTO -> userDTO.getCpf().equals(cpf));
+
+        if (!removido) {
+            throw new RuntimeException("Usuário não encontrado.");
+        }
+
+        System.out.println("Usuário excluído com sucesso.");
+        return true;
+    }
+
 }
 

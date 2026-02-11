@@ -20,13 +20,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
-    @Column(nullable = false, unique = true, length = 14)
     private String cpf;
     private String endereco;
     private String email;
-
-    @Column(nullable = false, length = 20)
     private String telefone;
     private LocalDateTime dataCadastro;
 
