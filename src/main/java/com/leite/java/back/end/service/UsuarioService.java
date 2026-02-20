@@ -96,15 +96,8 @@ public class UsuarioService {
      * Busca usuários pelo nome utilizando LIKE.
      * Retorna lista de DTOs.
      */
-    public List<UsuarioDTO> queryByNome(String nome) {
-
-        List<Usuario> usuarios =
-                usuarioRepository.queryByNomeLike(nome);
-
-        return usuarios
-                .stream()
-                .map(UsuarioDTO::convert)
-                .collect(Collectors.toList());
+    public List<Usuario> queryByName(String nome) {
+        return usuarioRepository.findByNomeContaining(nome);
     }
 
     /**
@@ -143,4 +136,19 @@ public class UsuarioService {
         // Retorna usuário atualizado convertido para DTO
         return UsuarioDTO.convert(usuario);
     }
+
+    /**
+     * Exclui um usuário pelo ID.
+     * Lança exceção caso não encontre.
+     *
+     * @return
+     */
+    public boolean delete(Long usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuarioRepository.delete(usuario);
+        return true;
+    }
+
 }
