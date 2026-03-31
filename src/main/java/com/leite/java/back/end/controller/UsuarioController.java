@@ -64,5 +64,12 @@ public class UsuarioController {
             @RequestParam(name = "nome", required = true) String nome) {
         return usuarioService.queryByName(nome);
     }
+
+    @Operation(summary = "Atualizar usuários pelo id")
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> atualizar(@PathVariable Long id,
+                                                @RequestBody @Valid UsuarioDTO usuarioDTO) {
+        return ResponseEntity.ok(usuarioService.update(id, usuarioDTO));
+    }
 }
 

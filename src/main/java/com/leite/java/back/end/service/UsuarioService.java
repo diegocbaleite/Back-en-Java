@@ -151,4 +151,21 @@ public class UsuarioService {
         return true;
     }
 
+    public UsuarioDTO update(Long id, UsuarioDTO dto) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        // Atualiza os campos
+        usuario.setNome(dto.getNome());
+        usuario.setCpf(dto.getCpf());
+        usuario.setEndereco(dto.getEndereco());
+        usuario.setEmail(dto.getEmail());
+        usuario.setTelefone(dto.getTelefone());
+        usuario.setDataCadastro(LocalDateTime.now());
+
+        Usuario salvo = usuarioRepository.save(usuario);
+
+        return UsuarioDTO.convert(usuario);
+    }
+
 }
