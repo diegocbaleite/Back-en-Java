@@ -41,11 +41,11 @@ public class UsuarioController {
         return usuarioService.save(usuarioDTO);
     }
 
-//    @Operation(summary = "Buscar usuário por CPF")
-//    @GetMapping("/cpf/{cpf}")
-//    public UsuarioDTO buscarPorCpf(@PathVariable String cpf) {
-//        return usuarioService.findByCpf(cpf);
-//    }
+    @Operation(summary = "Buscar usuário por CPF")
+    @GetMapping("/cpf/{cpf}")
+    public UsuarioDTO buscarPorCpf(@PathVariable String cpf) {
+        return usuarioService.findByCpf(cpf);
+    }
 
     @Operation(summary = "Deletar usuário por ID")
     @DeleteMapping("/{id}")
