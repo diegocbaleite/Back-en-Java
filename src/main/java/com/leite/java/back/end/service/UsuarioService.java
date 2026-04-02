@@ -69,9 +69,7 @@ public class UsuarioService {
         usuarioDTO.setDataCadastro(LocalDateTime.now());
 
         // Converte DTO para entidade e salva no banco
-        Usuario usuario = usuarioRepository.save(
-                Usuario.convert(usuarioDTO)
-        );
+        Usuario usuario = usuarioRepository.save(Usuario.convert(usuarioDTO));
 
         // Retorna DTO atualizado
         return UsuarioDTO.convert(usuario);
@@ -83,7 +81,7 @@ public class UsuarioService {
      */
     public UsuarioDTO findByCpf(String cpf) {
 
-        Usuario usuario = (Usuario) usuarioRepository.findByCpf(cpf);
+        Usuario usuario = usuarioRepository.findByCpf(cpf);
 
         if (usuario != null) {
             return UsuarioDTO.convert(usuario);
@@ -106,35 +104,19 @@ public class UsuarioService {
      */
     public UsuarioDTO editUser(Long userId, UsuarioDTO usuarioDTO) {
 
-        // Busca usuário existente
-        Usuario usuario = usuarioRepository
-                .findById(userId)
-                .orElseThrow(() ->
-                        new RuntimeException("Usuário não encontrado"));
+        Usuario usuario = usuarioRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        // Atualiza email se diferente
-        if (usuarioDTO.getEmail() != null &&
-                !usuario.getEmail().equals(usuarioDTO.getEmail())) {
-            usuario.setEmail(usuarioDTO.getEmail());
-        }
+        // Atualiza os campos
+        usuario.setNome(usuarioDTO.getNome());
+        usuario.setCpf(usuarioDTO.getCpf());
+        usuario.setEndereco(usuarioDTO.getEndereco());
+        usuario.setEmail(usuarioDTO.getEmail());
+        usuario.setTelefone(usuarioDTO.getTelefone());
 
-        // Atualiza telefone se diferente
-        if (usuarioDTO.getTelefone() != null &&
-                !usuario.getTelefone().equals(usuarioDTO.getTelefone())) {
-            usuario.setTelefone(usuarioDTO.getTelefone());
-        }
+        Usuario salvo = usuarioRepository.save(usuario);
 
-        // Atualiza endereço se diferente
-        if (usuarioDTO.getEndereco() != null &&
-                !usuario.getEndereco().equals(usuarioDTO.getEndereco())) {
-            usuario.setEndereco(usuarioDTO.getEndereco());
-        }
-
-        // Salva alterações no banco
-        usuario = usuarioRepository.save(usuario);
-
-        // Retorna usuário atualizado convertido para DTO
-        return UsuarioDTO.convert(usuario);
+        return UsuarioDTO.convert(salvo);
     }
 
     /**
@@ -149,23 +131,6 @@ public class UsuarioService {
 
         usuarioRepository.delete(usuario);
         return true;
-    }
-
-    public UsuarioDTO update(Long id, UsuarioDTO dto) {
-        Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        // Atualiza os campos
-        usuario.setNome(dto.getNome());
-        usuario.setCpf(dto.getCpf());
-        usuario.setEndereco(dto.getEndereco());
-        usuario.setEmail(dto.getEmail());
-        usuario.setTelefone(dto.getTelefone());
-        usuario.setDataCadastro(LocalDateTime.now());
-
-        Usuario salvo = usuarioRepository.save(usuario);
-
-        return UsuarioDTO.convert(usuario);
     }
 
 }

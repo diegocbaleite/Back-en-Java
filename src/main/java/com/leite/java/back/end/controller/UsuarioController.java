@@ -23,13 +23,13 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @Operation(summary = "Listar todos os usuários")
-    @GetMapping
+    @GetMapping("/")
     public List<UsuarioDTO> listarUsuarios() {
         return usuarioService.getAll();
     }
 
     @Operation(summary = "Buscar usuário por ID")
-    @GetMapping("/{id}")
+    @GetMapping("/usuarios/{id}")
     public UsuarioDTO buscarPorId(@PathVariable Long id) {
         return usuarioService.findById(id);
     }
@@ -41,11 +41,11 @@ public class UsuarioController {
         return usuarioService.save(usuarioDTO);
     }
 
-    @Operation(summary = "Buscar usuário por CPF")
-    @GetMapping("/cpf/{cpf}")
-    public UsuarioDTO buscarPorCpf(@PathVariable String cpf) {
-        return usuarioService.findByCpf(cpf);
-    }
+//    @Operation(summary = "Buscar usuário por CPF")
+//    @GetMapping("/cpf/{cpf}")
+//    public UsuarioDTO buscarPorCpf(@PathVariable String cpf) {
+//        return usuarioService.findByCpf(cpf);
+//    }
 
     @Operation(summary = "Deletar usuário por ID")
     @DeleteMapping("/{id}")
@@ -67,9 +67,9 @@ public class UsuarioController {
 
     @Operation(summary = "Atualizar usuários pelo id")
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> atualizar(@PathVariable Long id,
+    public ResponseEntity<UsuarioDTO> editUser(@PathVariable Long id,
                                                 @RequestBody @Valid UsuarioDTO usuarioDTO) {
-        return ResponseEntity.ok(usuarioService.update(id, usuarioDTO));
+        return ResponseEntity.ok(usuarioService.editUser(id, usuarioDTO));
     }
 }
 

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
+    private Long id;
 
     @NotBlank(message = "Nome é	obrigatório")
     private String nome;
@@ -29,6 +30,7 @@ public class UsuarioDTO {
 
     public static UsuarioDTO convert(Usuario usuario) {
         return new UsuarioDTO(
+                usuario.getId(),
                 usuario.getNome(),
                 usuario.getCpf(),
                 usuario.getEndereco(),

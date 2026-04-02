@@ -28,6 +28,8 @@ public class Usuario {
 
     public static Usuario convert(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
+
+        usuario.setId(usuarioDTO.getId());
         usuario.setNome(usuarioDTO.getNome());
         usuario.setEndereco(usuarioDTO.getEndereco());
         usuario.setCpf(usuarioDTO.getCpf());
@@ -40,6 +42,7 @@ public class Usuario {
     public static UsuarioDTO convert(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setNome(usuario.getNome());
+        usuarioDTO.setId(usuario.getId());
         usuarioDTO.setEndereco(usuario.getEndereco());
         usuarioDTO.setCpf(usuario.getCpf());
         usuarioDTO.setEmail(usuario.getEmail());
